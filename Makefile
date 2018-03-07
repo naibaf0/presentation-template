@@ -1,15 +1,27 @@
 # Use Beamer for slides, Minted for code highlighting.
 # Minted requires Pygments: http://pygments.org/
-PDFLATEX = latexmk -pdf
+DOCUMENT_NAME = presentation
+OUTPUT_DIR    = output
 
-all:	presentation.pdf
+#
+# latexmk
+#
 
-presentation.pdf:	slides.tex
+# Build document with latexmk
+all: presentation
 
-%.pdf:	%.tex minted.sty
-	$(PDFLATEX) -shell-escape $*.tex
-
+# Remove output directory and generated document
 clean:
-	rm -rf *.iml *.aux *.log *.nav *.out *.snm *.toc *.vrb *.pyg *.fls *_latexmk _minted*
+	rm -rf $(OUTPUT_DIR)
+	rm -f $(DOCUMENT_NAME).pdf
+	rm -f $(DOCUMENT_NAME).synctex.gz
 
-.PHONY: all clean
+# Cleanup the temporary files
+cleanup:
+	latexmk -c
+
+presentation:
+	latexmk
+
+
+.PHONY: all clean cleanup
