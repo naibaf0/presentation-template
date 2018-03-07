@@ -1,2 +1,51 @@
-\documentclass[ignorenonframetext,hyperref={colorlinks=true}]{beamer}
-\input{slides.tex}
+\documentclass[ignorenonframetext,hyperref={colorlinks=true}]{beamer} % add 'aspectratio=169' for widescreen slides
+
+\mode<presentation>
+{
+  \usetheme{CambridgeUS}
+}
+\usepackage[utf8]{inputenc}
+%\usepackage[ngerman]{babel} % uncomment if presentation in German
+\usepackage{booktabs} % package for pretty tables
+
+\usepackage[outputdir=output]{minted} % code highlighting, use 'draft' to avoid pygments reruns while editing
+\setminted{frame=single}
+
+\title{Generic presentation title}
+\subtitle{Subtitle: make sure the title is not too long}
+\author[Fabian Hinz]{Fabian Hinz \\ {\ttfamily\small \href{mailto:hallo@naibafo.de}{hallo@naibafo.de}}}
+\institute{\href{https://www.naibafo.de}{Organisation/Homepage}}
+\date[April 16, 2015]
+
+\subject{Computer Science}
+
+\AtBeginSection[]
+{
+  \begin{frame}<beamer>{Outline}
+    \tableofcontents[currentsection,subsectionstyle=hide]
+  \end{frame}
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+  % Ein Abstrakt ist hier
+\end{abstract}
+
+\begin{frame}
+  \titlepage{}
+\end{frame}
+
+\section*{Outline}
+
+\begin{frame}{Outline}
+  \tableofcontents[subsectionstyle=hide]
+\end{frame}
+
+\mode<all>{\input{slides}}
+
+\end{document}
+
+
